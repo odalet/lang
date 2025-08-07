@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <StartupObject>TestApp.Program</StartupObject>
+    <!-- <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Common\AddUpKeyFile.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign> -->
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <!-- See https://stackoverflow.com/questions/36461174/how-do-i-disable-all-roslyn-code-analyzers -->
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzers>false</RunAnalyzers>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>Full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="data\hello.sl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

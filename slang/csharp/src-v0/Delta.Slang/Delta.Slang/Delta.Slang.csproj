@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <!-- <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign> -->
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
+  </ItemGroup>-->
+
+  <ItemGroup>
+    <ProjectReference Include="..\Delta.Slang.Infrastructure\Delta.Slang.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

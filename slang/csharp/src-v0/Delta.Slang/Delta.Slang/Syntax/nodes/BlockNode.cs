@@ -1,0 +1,1 @@
+﻿namespace Delta.Slang.Syntax;

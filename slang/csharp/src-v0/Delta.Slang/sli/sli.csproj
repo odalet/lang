@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+    <!-- <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign> -->
+    <RootNamespace>Delta.Slang.Repl</RootNamespace>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>Full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Delta.Slang\Delta.Slang.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="samples\hello.sl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

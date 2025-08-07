@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <!-- <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Common\AddUpKeyFile.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign> -->
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <RootNamespace>Delta.Slang</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+</Project>

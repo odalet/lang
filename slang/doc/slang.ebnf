@@ -1,0 +1,62 @@
+(* slang Grammar *)
+
+(*
+Syntax:
+
+a | b       a or b
+()          1 time
+()*         0 to n times
+()?         0 or 1 time
+()+         1 to n times
+a ... b     a or ... or b
+a - b       everything in a except everything in b
+*)
+
+compilationUnit = declaration* EOF;
+
+declaration = variableDeclaration | statement;
+
+variableDeclaration = "var" IDENTIFIER ( "=" expression )?;
+
+statement = printStatement | ifStatement | whileStatement | breakStatement | continueStatement | block | expression;
+
+printStatement = "print" "(" expresion ")" ";";
+
+ifStatement = "if" "(" expression ")" statement ("else" statement)?;
+whileStatement = "while" "(" expression ")" statement;
+breakStatement = "break" ";"; (* NB: only valid inside a loop *)
+continueStatement = "continue" ";"; (* NB: only valid inside a loop *)
+
+block = "{" declaration* "}";
+
+ifStatement = "if" "(" expression ")" statement ( "else" statement )?;
+
+(* Precedence is handled through metadata *)
+expression = primary | unary | binary | assignment;
+unary = ("!" | "+" | "-") primary;
+binary = primary ("||" | "&&" | "==" | "!=" | "<" | "<=" | ">" | ">=" | "+" | "-" | "*" | "/") primary;
+assignment = lvalue "=" expression;
+primary = grouping | LITERAL;
+grouping = "(" expression ")";
+lvalue = IDENTIFIER;
+
+(* Literals *)
+
+IDENTIFIER = IDENTIFIER_FIRST_CHAR ( IDENTIFIER_FIRST_CHAR | DIGIT )*;
+(* Not really as we accept other unicode chars in identifiers, but a pita to list for now *)
+IDENTIFIER_FIRST_CHAR = "a" ... "z" | "A" ... "Z" | "_";
+
+LITERAL = NUMBER | STRING | BOOLEAN | NULL;
+NULL = "null";
+BOOLEAN = "true" | "false";
+
+STRING = '"' STRING_CONTENT '"';
+STRING_CONTENT = (CHARACTER - '"' | '\"')*;
+
+(* NB: We allow numbers to start with an unlimited number of 0; eg. 1 == 01 == 001... *)
+NUMBER = INTEGER | FLOAT;
+FLOAT = INTEGER "." DIGIT+;
+INTEGER = DIGIT+;
+DIGIT =  "0" ... "9";
+
+CHARACTER = ? all valid unicode characters ?;
